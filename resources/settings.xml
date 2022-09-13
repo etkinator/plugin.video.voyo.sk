@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="31001">
+        <setting label="31002" type="labelenum" id="source_type" values="DASH|HLS" default="HLS" visible="false"/>
+		<setting label="31003" type="lsep"/>
+		<setting id="username" type="text" label="31004" default=""/>
+		<setting id="password" type="text" label="31005" option="hidden" default=""/>
+
+		<setting id="accessToken" type="text" label="Access token" default="" visible="false"/>
+		<setting id="deviceId" type="text" label="Device ID" default="" visible="false"/>
+		<setting id="userId" type="text" label="User ID" default="" visible="false"/>
+	</category>
+</settings>

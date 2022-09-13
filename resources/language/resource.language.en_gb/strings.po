@@ -1,0 +1,105 @@
+# Kodi Media Center language file
+# Addon Name: Nova Plus
+# Addon id: plugin.video.novaplus.cz
+# Addon Provider: wombat
+msgid ""
+msgstr ""
+
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+msgctxt "#30000"
+msgid "Home"
+msgstr ""
+
+msgctxt "#30001"
+msgid "Recent"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Films"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Series"
+msgstr ""
+
+msgctxt "#30004"
+msgid "Shows"
+msgstr ""
+
+msgctxt "#30004"
+msgid "Next videos"
+msgstr ""
+
+msgctxt "#30005"
+msgid "Sport"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Children"
+msgstr ""
+
+msgctxt "#30007"
+msgid "Favourite"
+msgstr ""
+
+msgctxt "#30008"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30009"
+msgid "History"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Next videos"
+msgstr "Ďalšie videá"
+
+msgctxt "#30100"
+msgid "Not found"
+msgstr ""
+
+msgctxt "#30101"
+msgid "No stream found"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Login to VOYO was successful"
+msgstr ""
+
+msgctxt "#30103"
+msgid "Login to VOYO was unsuccessful. Check correct credentials."
+msgstr ""
+
+msgctxt "#30104"
+msgid "The number of allowed devices exceeded the limit."
+msgstr ""
+
+msgctxt "#30105"
+msgid "Unauthorized acces. Check the credentials."
+msgstr ""
+
+msgctxt "#30106"
+msgid "Stream acces error. Check the credentials."
+msgstr ""
+
+msgctxt "#31001"
+msgid "General"
+msgstr ""
+
+msgctxt "#31002"
+msgid "Source"
+msgstr ""
+
+msgctxt "#31003"
+msgid "Account settings"
+msgstr ""
+
+msgctxt "#31004"
+msgid "E-mail"
+msgstr ""
+
+msgctxt "#31005"
+msgid "Password"
+msgstr ""

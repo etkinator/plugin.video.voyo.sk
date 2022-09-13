@@ -1,0 +1,106 @@
+# Kodi Media Center language file
+# Addon Name: Nova Plus
+# Addon id: plugin.video.novaplus.cz
+# Addon Provider: wombat
+msgid ""
+msgstr ""
+
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: cs\n"
+
+msgctxt "#30000"
+msgid "Home"
+msgstr "Domů"
+
+msgctxt "#30001"
+msgid "Recent"
+msgstr "Novinky"
+
+msgctxt "#30002"
+msgid "Films"
+msgstr "Filmy"
+
+msgctxt "#30004"
+msgid "Series"
+msgstr "Seriály"
+
+msgctxt "#30004"
+msgid "Shows"
+msgstr "Pořady"
+
+msgctxt "#30005"
+msgid "Sport"
+msgstr "Šport"
+
+msgctxt "#30006"
+msgid "Children"
+msgstr "Děti"
+
+msgctxt "#30007"
+msgid "Favourite"
+msgstr "Oblíbené"
+
+msgctxt "#30008"
+msgid "Search"
+msgstr "Hledat"
+
+msgctxt "#30009"
+msgid "History"
+msgstr "Historie"
+
+msgctxt "#30010"
+msgid "Next videos"
+msgstr "Další videa"
+
+msgctxt "#30100"
+msgid "Not found"
+msgstr "Nenalezeno"
+
+msgctxt "#30101"
+msgid "No stream found"
+msgstr "Žádný stream nenalezen"
+
+msgctxt "#30102"
+msgid "Login to VOYO was successful"
+msgstr "Prihlášení ma VOYO bylo úspešné."
+
+msgctxt "#30103"
+msgid "Login to VOYO was unsuccessful. Check correct credentials."
+msgstr "Prihlášení ma VOYO nebylo úspešné. Skontrolujte, jestli jste zadali správné přihlašovací údaje."
+
+msgctxt "#30104"
+msgid "The number of allowed devices exceeded the limit."
+msgstr "Přesáhli jste povolený počet zařízení."
+
+msgctxt "#30105"
+msgid "Unauthorized acces. Check the credentials."
+msgstr "Neautorizovaný přístup. Skontrolujte, jestli jste zadali správné přihlasovací údaje"
+
+msgctxt "#30106"
+msgid "Stream acces error. Check the credentials."
+msgstr "Chyba při přehrávání, skontrolujte platnost vašeho účtu VOYO"
+
+msgctxt "#30107"
+msgid "To playing content is needed account on voyo.markiza.sk.\n\nRegister on site voyo.markiza.sk and pay for service."
+msgstr "Pro přehrávání pořadů je potřeba účet s aktivním předplatným na voyo.nova.cz\n\nPokud účet ještě nemáte, zaregistrujte se na voyo.nova.cz, předplaťte účet na měsíc nebo rok a v dalším okně vyplňte přihlašovací údaje."
+
+
+msgctxt "#31001"
+msgid "General"
+msgstr "Obecné"
+
+msgctxt "#31002"
+msgid "Source"
+msgstr "Zdroj"
+
+msgctxt "#31003"
+msgid "Account settings"
+msgstr "Přihlašovací údaje"
+
+msgctxt "#31004"
+msgid "E-mail"
+msgstr "E-mail"
+
+msgctxt "#31005"
+msgid "Password"
+msgstr "Heslo"

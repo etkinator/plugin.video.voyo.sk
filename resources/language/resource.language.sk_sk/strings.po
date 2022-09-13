@@ -1,0 +1,109 @@
+# Kodi Media Center language file
+# Addon Name: Nova Plus
+# Addon id: plugin.video.novaplus.cz
+# Addon Provider: wombat
+msgid ""
+msgstr ""
+
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sk\n"
+
+msgctxt "#30000"
+msgid "Home"
+msgstr "Domov"
+
+msgctxt "#30001"
+msgid "Recent"
+msgstr "Novinky"
+
+msgctxt "#30002"
+msgid "Films"
+msgstr "Filmy"
+
+msgctxt "#30003"
+msgid "Series"
+msgstr "Seriály"
+
+msgctxt "#30004"
+msgid "Shows"
+msgstr "Relácie"
+
+msgctxt "#30005"
+msgid "Sport"
+msgstr "Šport"
+
+msgctxt "#30005"
+msgid "Sport"
+msgstr "Šport"
+
+msgctxt "#30006"
+msgid "Children"
+msgstr "Deti"
+
+msgctxt "#30007"
+msgid "Favourite"
+msgstr "Obľúbené"
+
+msgctxt "#30008"
+msgid "Search"
+msgstr "Hľadať"
+
+msgctxt "#30009"
+msgid "History"
+msgstr "História sledovania"
+
+msgctxt "#30010"
+msgid "Next videos"
+msgstr ""
+
+msgctxt "#30100"
+msgid "Not found"
+msgstr "Nenájdené"
+
+msgctxt "#30101"
+msgid "No stream found"
+msgstr "Nenašiel sa stream"
+
+msgctxt "#30102"
+msgid "Login to VOYO was successful"
+msgstr "Prihlásenie do služby VOYO prebehlo úspešne."
+
+msgctxt "#30103"
+msgid "Login to VOYO was unsuccessful. Check correct credentials."
+msgstr "Prihlásenie do služby VOYO nebolo úspešné. Skontrolujte, či ste zadali správne prihlasovacie údaje."
+
+msgctxt "#30104"
+msgid "The number of allowed devices exceeded the limit."
+msgstr "Presiahli ste povolený počet zariadení."
+
+msgctxt "#30105"
+msgid "Unauthorized acces. Check the credentials."
+msgstr "Prístup k médiu je neautorizovaný. Skontrolujte, či ste zadali správne prihlasovacie údaje"
+
+msgctxt "#30106"
+msgid "Stream acces error. Check the credentials."
+msgstr "Chyba pri prehrávaní, skontrolujte platnosť vášho účtu VOYO"
+
+msgctxt "#30107"
+msgid "To playing content is needed account on voyo.markiza.sk.\n\nRegister on site voyo.markiza.sk and pay for service."
+msgstr "Na prehrávanie obsahu je potrebný účet na voyo.markiza.sk\n\nAk účet ešte nemáte, zaregistrujte se na voyo.markiza.sk, predplaťte si účet na mesiac alebo rok a v daľšom okne vyplňte prihlasovacie údaje."
+
+msgctxt "#31001"
+msgid "General"
+msgstr "Všeobecné"
+
+msgctxt "#31002"
+msgid "Source"
+msgstr "Zdroj"
+
+msgctxt "#31003"
+msgid "Account settings"
+msgstr "Prihlasovacie údaje"
+
+msgctxt "#31004"
+msgid "E-mail"
+msgstr "E-mail"
+
+msgctxt "#31005"
+msgid "Password"
+msgstr "Heslo"
