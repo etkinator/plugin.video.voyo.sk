@@ -1,6 +1,6 @@
 # Kodi Media Center language file
 # Addon Name: Nova Plus
-# Addon id: plugin.video.novaplus.cz
+# Addon id: plugin.video.voyo.sk
 # Addon Provider: wombat
 msgid ""
 msgstr ""
@@ -82,6 +82,10 @@ msgstr ""
 
 msgctxt "#30106"
 msgid "Stream acces error. Check the credentials."
+msgstr ""
+
+msgctxt "#30107"
+msgid "To playing content is needed account on voyo.markiza.sk.\n\nRegister on site voyo.markiza.sk and pay for service."
 msgstr ""
 
 msgctxt "#31001"
