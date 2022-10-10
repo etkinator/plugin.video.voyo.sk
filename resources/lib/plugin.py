@@ -1111,7 +1111,7 @@ def performCredentialCheck():
 
 	if not username or not password:
 		registration_notice = xbmcgui.Dialog()
-        registration_notice.ok(_addon.getAddonInfo('name'), _addon.getLocalizedString(30107))	#"Na prehrávanie obsahu je potrebný účet na voyo.markiza.sk\n\nAk účet ešte nemáte, zaregistrujte se na voyo.markiza.sk, predplaťte si účet na mesiac alebo rok a v daľšom okne vyplňte prihlasovacie údaje."
+		registration_notice.ok(_addon.getAddonInfo('name'), _addon.getLocalizedString(30107))	#"Na prehrávanie obsahu je potrebný účet na voyo.markiza.sk\n\nAk účet ešte nemáte, zaregistrujte se na voyo.markiza.sk, predplaťte si účet na mesiac alebo rok a v daľšom okne vyplňte prihlasovacie údaje."
 
 		username_prompt = xbmcgui.Dialog()
 		usr = username_prompt.input('E-mail')
