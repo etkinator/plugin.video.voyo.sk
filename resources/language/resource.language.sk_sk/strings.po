@@ -1,6 +1,6 @@
 # Kodi Media Center language file
 # Addon Name: Nova Plus
-# Addon id: plugin.video.novaplus.cz
+# Addon id: plugin.video.voyo.sk
 # Addon Provider: wombat
 msgid ""
 msgstr ""
