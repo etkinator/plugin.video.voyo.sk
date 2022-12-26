@@ -20,7 +20,7 @@ msgctxt "#30002"
 msgid "Films"
 msgstr "Filmy"
 
-msgctxt "#30004"
+msgctxt "#30003"
 msgid "Series"
 msgstr "Seriály"
 
@@ -49,8 +49,12 @@ msgid "History"
 msgstr "Historie"
 
 msgctxt "#30010"
-msgid "Next videos"
-msgstr "Další videa"
+msgid "Fortuna League"
+msgstr "Fortuna liga"
+
+msgctxt "#30011"
+msgid "Next Items..."
+msgstr "Další položky..."
 
 msgctxt "#30100"
 msgid "Not found"
