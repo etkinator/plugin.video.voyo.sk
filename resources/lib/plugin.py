@@ -248,6 +248,87 @@ def list_search(type):
     xbmcplugin.addDirectoryItems(plugin.handle, listing, len(listing))
     xbmcplugin.endOfDirectory(plugin.handle)
 
+@plugin.route('/list_fortuna/<type>')
+def list_fortuna(type):
+    xbmcplugin.setContent(plugin.handle, 'tvshows')
+    soup = get_page(_baseurl+'sport/fortuna-liga')
+    listing = []
+    articles = soup.find_all('article', {'class': 'c-video-box'})
+    for article in articles:
+        title = article.h3.a.contents[0].encode('utf-8').strip()
+        print(title)
+        list_item = xbmcgui.ListItem(label=title)
+        list_item.setArt({'poster': article.img['data-src'], 'icon': article.img['data-src']})
+        if str(article.h3.a['href']).find('/filmy/')>0 :
+            #print('filmy get')
+            if str(article.h3.a['href']).find('/kolekcie/')>0 :
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                listing.append((plugin.url_for(get_listMKol, show_url = article.h3.a['href']), list_item, True))
+            else:
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                list_item.setProperty('IsPlayable', 'true')
+                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
+        elif str(article.h3.a['href']).find('/relacie/')>0 :
+            if str(article.h3.a['href']).find('/epizoda/')>0 :
+                #print('relacie epizoda get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                list_item.setProperty('IsPlayable', 'true')
+                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
+            elif str(article.h3.a['href']).find('/kolekcie/')>0 :
+                #print('relacie kolekcie get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                listing.append((plugin.url_for(get_listSKol, show_url = article.h3.a['href']), list_item, True))
+            else:
+                #print('relacie get')
+                list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
+                listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
+        elif str(article.h3.a['href']).find('/sport/')>0 :
+            if str(article.h3.a['href']).find('/epizoda/')>0 :
+                #print('relacie epizoda get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                list_item.setProperty('IsPlayable', 'true')
+                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
+            elif str(article.h3.a['href']).find('/kolekcie/')>0 :
+                #print('relacie kolekcie get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                listing.append((plugin.url_for(get_listSKol, show_url = article.h3.a['href']), list_item, True))
+            else:
+                #print('relacie get')
+                list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
+                listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
+        elif str(article.h3.a['href']).find('/serialy/')>0 :
+            if str(article.h3.a['href']).find('/epizoda/')>0 :
+                print('serial epizoda get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                list_item.setProperty('IsPlayable', 'true')
+                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
+            elif str(article.h3.a['href']).find('/kolekcie/')>0 :
+                print('serial kolekcie get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                listing.append((plugin.url_for(get_listSKol, show_url = article.h3.a['href']), list_item, True))
+            else:
+                print('serial get')
+                list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
+                listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
+        elif str(article.h3.a['href']).find('/serialy-a-relacie/')>0 :
+            if str(article.h3.a['href']).find('/epizoda/')>0 :
+                print('serialy-a-relacie epizoda get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                list_item.setProperty('IsPlayable', 'true')
+                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
+            elif str(article.h3.a['href']).find('/kolekcie/')>0 :
+                print('serialy-a-relacie kolekcie get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                listing.append((plugin.url_for(get_listSKol, show_url = article.h3.a['href']), list_item, True))
+            else:
+                print('serialy-a-relacie get')
+                list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
+                listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
+        else:
+            xbmcgui.Dialog().notification(_addon.getAddonInfo('name'),_addon.getLocalizedString(30100), xbmcgui.NOTIFICATION_ERROR, 5000) #'Nenájdené'
+
+    xbmcplugin.addDirectoryItems(plugin.handle, listing, len(listing))
+    xbmcplugin.endOfDirectory(plugin.handle)
 
 
 @plugin.route('/list_HistView/<type>')
@@ -311,6 +392,17 @@ def list_HistView(type):
             else:
                 #print('relacie get')
                 listing.append((plugin.url_for(get_listSez, show_url = url), list_item, True))
+        elif str(url).find('/sport/')>0 :
+            if str(url).find('/epizoda/')>0 :
+                #print('relacie epizoda get')
+                list_item.setProperty('IsPlayable', 'true')
+                listing.append((plugin.url_for(get_video, url), list_item, False))
+            elif str(url).find('/kolekcie/')>0 :
+                #print('relacie kolekcie get')
+                listing.append((plugin.url_for(get_listSKol, show_url = url), list_item, True))
+            else:
+                #print('relacie get')
+                listing.append((plugin.url_for(get_listSez, show_url = url), list_item, True))                
         elif str(url).find('/serialy/')>0 :
             if str(url).find('/epizoda/')>0 :
                 #print('serial epizoda get')
@@ -393,6 +485,20 @@ def get_listH():
                 #print('relacie get')
                 list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
                 listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
+        elif str(article.h3.a['href']).find('/sport/')>0 :
+            if str(article.h3.a['href']).find('/epizoda/')>0 :
+                #print('relacie epizoda get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                list_item.setProperty('IsPlayable', 'true')
+                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
+            elif str(article.h3.a['href']).find('/kolekcie/')>0 :
+                #print('relacie kolekcie get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                listing.append((plugin.url_for(get_listSKol, show_url = article.h3.a['href']), list_item, True))
+            else:
+                #print('relacie get')
+                list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
+                listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
         elif str(article.h3.a['href']).find('/serialy/')>0 :
             if str(article.h3.a['href']).find('/epizoda/')>0 :
                 #print('serial epizoda get')
@@ -442,7 +548,7 @@ def get_list():
         soup = get_next_page(url=url_send, par=payload)
     else:
         soup = get_page(url)
-    articles = soup.find_all('div', {'class': 'c-video-box'})
+    articles = soup.find_all('div', {'class': 'c-video-box'})    
     for article in articles:
         title = article.h3.a.contents[0].encode('utf-8').strip()
         list_item = xbmcgui.ListItem(label=title)
@@ -460,6 +566,20 @@ def get_list():
                 list_item.setProperty('IsPlayable', 'true')
                 listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
         elif str(article.h3.a['href']).find('/relacie/')>0 :
+            if str(article.h3.a['href']).find('/epizoda/')>0 :
+                #print('relacie epizoda get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                list_item.setProperty('IsPlayable', 'true')
+                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
+            elif str(article.h3.a['href']).find('/kolekcie/')>0 :
+                #print('relacie kolekcie get')
+                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                listing.append((plugin.url_for(get_listSKol, show_url = article.h3.a['href']), list_item, True))
+            else:
+                #print('relacie get')
+                list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
+                listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
+        elif str(article.h3.a['href']).find('/sport/')>0 :
             if str(article.h3.a['href']).find('/epizoda/')>0 :
                 #print('relacie epizoda get')
                 list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
@@ -507,14 +627,15 @@ def get_list():
         #    #print('serial get')
         #    list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
         #    listing.append((plugin.url_for(get_listSC, category = True, show_url = article.h3.a['href'], showtitle = title), list_item, True))
-
-    pages = soup.find('div', {'class': 'load-more paginator'}).find_all('a')
-    for page in pages:
-        pagination = page.find('div',{'class': 'text'})
-        if pagination.get_text() == 'Ďalší':
-            list_item = xbmcgui.ListItem(label=_addon.getLocalizedString(30010))
-            #list_item = xbmcgui.ListItem(pagination.get_text())
-            listing.append((plugin.url_for(get_list, show_url = page['href'], next_state = True), list_item, True))
+    
+    if soup.find('div', {'class': 'load-more paginator'}):
+        pages = soup.find('div', {'class': 'load-more paginator'}).find_all('a')
+        for page in pages:
+            pagination = page.find('div',{'class': 'text'})            
+            if pagination and pagination.get_text() == 'Ďalší':
+                list_item = xbmcgui.ListItem(label=_addon.getLocalizedString(30011))
+                #list_item = xbmcgui.ListItem(pagination.get_text())
+                listing.append((plugin.url_for(get_list, show_url = page['href'], next_state = True), list_item, True))
 
     xbmcplugin.addDirectoryItems(plugin.handle, listing, len(listing))
     xbmcplugin.endOfDirectory(plugin.handle)
@@ -567,6 +688,7 @@ def get_listMKol():
     print(soup)
     listing = []
     articles = soup.find_all('article', {'class': 'c-video-box'})
+    nextpage = soup.find_all('article', {'class': 'c-video-box'})
     print(articles)
     for article in articles:
         title = article.h3.a.contents[0].encode('utf-8').strip()
@@ -633,13 +755,14 @@ def get_listEp():
         list_item.setProperty('IsPlayable', 'true')
         listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
         count +=1
-    pages = soup.find('div', {'class': 'load-more paginator'}).find_all('a')
-    for page in pages:
-        pagination = page.find('div',{'class': 'text'})
-        if pagination.get_text() == 'Ďalší':
-            list_item = xbmcgui.ListItem(label=_addon.getLocalizedString(30010))
-            #list_item = xbmcgui.ListItem(pagination.get_text())
-            listing.append((plugin.url_for(get_list, show_url = page['href'], next_state = True), list_item, True))
+    if soup.find('div', {'class': 'load-more paginator'}):
+        pages = soup.find('div', {'class': 'load-more paginator'}).find_all('a')
+        for page in pages:
+            pagination = page.find('div',{'class': 'text'})            
+            if pagination and pagination.get_text() == 'Ďalší':
+                list_item = xbmcgui.ListItem(label=_addon.getLocalizedString(30011))
+                #list_item = xbmcgui.ListItem(pagination.get_text())
+                listing.append((plugin.url_for(get_list, show_url = page['href'], next_state = True), list_item, True))
 
     xbmcplugin.addDirectoryItems(plugin.handle, listing, len(listing))
     xbmcplugin.endOfDirectory(plugin.handle)
@@ -1186,8 +1309,13 @@ def root():
 	list_item.setArt({'icon': 'DefaultTVShows.png'})
 	listing.append((plugin.url_for(list_sport, 0), list_item, True))
 
+	list_item = xbmcgui.ListItem(_addon.getLocalizedString(30010)) #'Fortuna liga'
+	list_item.setArt({'icon': 'DefaultTVShows.png'})
+	#listing.append((plugin.url_for(get_list, show_url = _baseurl+'fortuna-liga', next_state = False), list_item, True))	
+	listing.append((plugin.url_for(list_fortuna, 0), list_item, True))	
+
 	list_item = xbmcgui.ListItem(_addon.getLocalizedString(30006)) #'Deti'
-	list_item.setArt({'icon': 'DefaultVideo.png'})
+	list_item.setArt({'icon': 'DefaultMovies.png'})
 	listing.append((plugin.url_for(list_kids, 0), list_item, True))
 
 	list_item = xbmcgui.ListItem(_addon.getLocalizedString(30008)) #'Hľadat'
