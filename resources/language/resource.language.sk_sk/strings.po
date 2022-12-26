@@ -32,10 +32,6 @@ msgctxt "#30005"
 msgid "Sport"
 msgstr "Šport"
 
-msgctxt "#30005"
-msgid "Sport"
-msgstr "Šport"
-
 msgctxt "#30006"
 msgid "Children"
 msgstr "Deti"
@@ -53,8 +49,12 @@ msgid "History"
 msgstr "História sledovania"
 
 msgctxt "#30010"
-msgid "Next videos"
-msgstr ""
+msgid "Fortuna League"
+msgstr "Fortuna liga"
+
+msgctxt "#30011"
+msgid "Next Items..."
+msgstr "Ďalšie položky..."
 
 msgctxt "#30100"
 msgid "Not found"
