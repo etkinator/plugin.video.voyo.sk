@@ -508,10 +508,13 @@ def get_list():
         #    list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
         #    listing.append((plugin.url_for(get_listSC, category = True, show_url = article.h3.a['href'], showtitle = title), list_item, True))
 
-    next = soup.find('div', {'class': 'load-more'})
-    if next:
-        list_item = xbmcgui.ListItem(label=_addon.getLocalizedString(30010))
-        #listing.append((plugin.url_for(get_list, show_url = next.find('button')['data-href'], next_state = True), list_item, True))
+    pages = soup.find('div', {'class': 'load-more paginator'}).find_all('a')
+    for page in pages:
+        pagination = page.find('div',{'class': 'text'})
+        if pagination.get_text() == 'Ďalší':
+            list_item = xbmcgui.ListItem(label=_addon.getLocalizedString(30010))
+            #list_item = xbmcgui.ListItem(pagination.get_text())
+            listing.append((plugin.url_for(get_list, show_url = page['href'], next_state = True), list_item, True))
 
     xbmcplugin.addDirectoryItems(plugin.handle, listing, len(listing))
     xbmcplugin.endOfDirectory(plugin.handle)
@@ -630,10 +633,13 @@ def get_listEp():
         list_item.setProperty('IsPlayable', 'true')
         listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
         count +=1
-    next = soup.find('div', {'class': 'load-more'})
-    if next:
-        list_item = xbmcgui.ListItem(label=_addon.getLocalizedString(30010))
-        listing.append((plugin.url_for(get_listEp, show_url = next.find('button')['data-href'], next_state = True), list_item, True))
+    pages = soup.find('div', {'class': 'load-more paginator'}).find_all('a')
+    for page in pages:
+        pagination = page.find('div',{'class': 'text'})
+        if pagination.get_text() == 'Ďalší':
+            list_item = xbmcgui.ListItem(label=_addon.getLocalizedString(30010))
+            #list_item = xbmcgui.ListItem(pagination.get_text())
+            listing.append((plugin.url_for(get_list, show_url = page['href'], next_state = True), list_item, True))
 
     xbmcplugin.addDirectoryItems(plugin.handle, listing, len(listing))
     xbmcplugin.endOfDirectory(plugin.handle)
