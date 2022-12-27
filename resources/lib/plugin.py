@@ -861,13 +861,13 @@ def get_video(url):
     embeded = get_page(soup.find('div', {'class':'c-player-wrap'}).find('iframe')['src'])
     if str(embeded).count("$.klebetnica"):        
         if str(embeded).count("player_device_limit_reached"):        
-            notice = xbmcgui.Dialog()
+            registration_notice = xbmcgui.Dialog()
             registration_notice.ok(_addon.getAddonInfo('name'), _addon.getLocalizedString(30104)) #'Presiahli ste povolený počet zariadení'
         elif str(embeded).count("player_not_logged_in"):        
-            notice = xbmcgui.Dialog()
+            registration_notice = xbmcgui.Dialog()
             registration_notice.ok(_addon.getAddonInfo('name'), _addon.getLocalizedString(30105)) #"Prístup k médiu je neautorizovaný. Skontrolujte, či ste zadali správne prihlasovacie údaje"
         else:
-            notice = xbmcgui.Dialog()
+            registration_notice = xbmcgui.Dialog()
             registration_notice.ok(_addon.getAddonInfo('name'), _addon.getLocalizedString(30106)) #"Chyba pri prehrávaní, skontrolujte platnosť vášho účtu VOYO"
     else:
         script = embeded.find_all('script')[-1]
