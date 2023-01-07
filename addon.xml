@@ -17,7 +17,12 @@
 	<description lang="sk_SK">Najnovšie časti obľúbených slovenských programov skôr než v TV, stovky kvalitných filmov a seriálov, atraktívne športové prenosy, a to všetko bez reklám a bez viazanosti.</description>
         <platform>all</platform>
 	<source>https://github.com/etkinator/plugin.video.voyo.sk</source>    
-        <news>Plugin pre Kodi 19 (úprava z českej verzie) 2023-01-07 etki</news>
+        <news> v0.2 2023-01-07 etki
+		[fix] Oprava vyhľadávania
+		[new] Doplnenie položky Fortuna liga
+		[fix] Oprava stránkovania v zoznamoch 
+	    	[new] Prvá verzia pluginu pre Kodi 19 (úprava z českej verzie) 2022-09-12 etki
+	</news>	
         <assets>
             <icon>resources/icon.png</icon>
         </assets>
