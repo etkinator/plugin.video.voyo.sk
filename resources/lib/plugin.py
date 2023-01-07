@@ -182,66 +182,65 @@ def list_search(type):
     #url='https://voyo.markiza.sk/api/v1/search'
     #par={'query':search, 'filter':'show'}
     #soup = get_next_page(url=url, par=par)
-    soup = get_page('https://voyo.markiza.sk/api/v2/search?query='+search+'&filter=show')
-    print(soup)
-    articles = soup.find_all('article', {'class': 'c-video-box'})
-    print(articles)
-    for article in articles:
-        title = article.h3.a.contents[0].encode('utf-8').strip()
-        print(title)
+    s = get_session()
+    r = s.get('https://voyo.markiza.sk/api/v2/search?query='+search, headers={'User-Agent': _UserAgent_}) #+'&filter=show'
+    data=r.json()
+    #print(data)    
+    resultGroups=data['resultGroups']
+    results=resultGroups[-1]['results']
+    for result in results:
+        title=result['content']['title']
         list_item = xbmcgui.ListItem(label=title)
-        list_item.setArt({'poster': article.img['data-src'], 'icon': article.img['data-src']})
-        if str(article.h3.a['href']).find('/filmy/')>0 :
+        list_item.setArt({'poster': result['content']['image'], 'icon': result['content']['image']})
+        list_item.setInfo('video', {'mediatype': result['content']['type'], 'title': title})
+
+    #articles = soup.find_all('article', {'class': 'c-video-box'})
+    #print(articles)
+    #for article in articles:
+    #    title = article.h3.a.contents[0].encode('utf-8').strip()        
+    #    print(title)
+    #    list_item = xbmcgui.ListItem(label=title)
+    #    list_item.setArt({'poster': article.img['data-src'], 'icon': article.img['data-src']})
+        if str(result['content']['webUrl']).find('/filmy/')>0 :
             #print('filmy get')
-            if str(article.h3.a['href']).find('/kolekcie/')>0 :
-                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
-                listing.append((plugin.url_for(get_listMKol, show_url = article.h3.a['href']), list_item, True))
-            else:
-                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+            if str(result['content']['webUrl']).find('/kolekcie/')>0 :            
+                listing.append((plugin.url_for(get_listMKol, show_url = result['content']['webUrl']), list_item, True))
+            else:                
                 list_item.setProperty('IsPlayable', 'true')
-                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
-        elif str(article.h3.a['href']).find('/relacie/')>0 :
-            if str(article.h3.a['href']).find('/epizoda/')>0 :
-                #print('relacie epizoda get')
-                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                listing.append((plugin.url_for(get_video, result['content']['webUrl']), list_item, False))
+        elif str(result['content']['webUrl']).find('/relacie/')>0 :
+            if str(result['content']['webUrl']).find('/epizoda/')>0 :
+                #print('relacie epizoda get')                
                 list_item.setProperty('IsPlayable', 'true')
-                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
-            elif str(article.h3.a['href']).find('/kolekcie/')>0 :
-                #print('relacie kolekcie get')
-                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
-                listing.append((plugin.url_for(get_listSKol, show_url = article.h3.a['href']), list_item, True))
+                listing.append((plugin.url_for(get_video, result['content']['webUrl']), list_item, False))
+            elif str(result['content']['webUrl']).find('/kolekcie/')>0 :
+                #print('relacie kolekcie get')                
+                listing.append((plugin.url_for(get_listSKol, show_url = result['content']['webUrl']), list_item, True))
             else:
-                #print('relacie get')
-                list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
-                listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
-        elif str(article.h3.a['href']).find('/serialy/')>0 :
-            if str(article.h3.a['href']).find('/epizoda/')>0 :
-                print('serial epizoda get')
-                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                #print('relacie get')                
+                listing.append((plugin.url_for(get_listSez, show_url = result['content']['webUrl']), list_item, True))
+        elif str(result['content']['webUrl']).find('/serialy/')>0 :
+            if str(result['content']['webUrl']).find('/epizoda/')>0 :
+                print('serial epizoda get')                
                 list_item.setProperty('IsPlayable', 'true')
-                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
-            elif str(article.h3.a['href']).find('/kolekcie/')>0 :
-                print('serial kolekcie get')
-                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
-                listing.append((plugin.url_for(get_listSKol, show_url = article.h3.a['href']), list_item, True))
+                listing.append((plugin.url_for(get_video, result['content']['webUrl']), list_item, False))
+            elif str(result['content']['webUrl']).find('/kolekcie/')>0 :
+                print('serial kolekcie get')                
+                listing.append((plugin.url_for(get_listSKol, show_url = result['content']['webUrl']), list_item, True))
             else:
-                print('serial get')
-                list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
-                listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
-        elif str(article.h3.a['href']).find('/serialy-a-relacie/')>0 :
-            if str(article.h3.a['href']).find('/epizoda/')>0 :
-                print('serialy-a-relacie epizoda get')
-                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
+                print('serial get')                
+                listing.append((plugin.url_for(get_listSez, show_url = result['content']['webUrl']), list_item, True))
+        elif str(result['content']['webUrl']).find('/serialy-a-relacie/')>0 :
+            if str(result['content']['webUrl']).find('/epizoda/')>0 :
+                print('serialy-a-relacie epizoda get')                
                 list_item.setProperty('IsPlayable', 'true')
-                listing.append((plugin.url_for(get_video, article.h3.a['href']), list_item, False))
-            elif str(article.h3.a['href']).find('/kolekcie/')>0 :
-                print('serialy-a-relacie kolekcie get')
-                list_item.setInfo('video', {'mediatype': 'movie', 'title': title})
-                listing.append((plugin.url_for(get_listSKol, show_url = article.h3.a['href']), list_item, True))
+                listing.append((plugin.url_for(get_video, result['content']['webUrl']), list_item, False))
+            elif str(result['content']['webUrl']).find('/kolekcie/')>0 :
+                print('serialy-a-relacie kolekcie get')                
+                listing.append((plugin.url_for(get_listSKol, show_url = result['content']['webUrl']), list_item, True))
             else:
-                print('serialy-a-relacie get')
-                list_item.setInfo('video', {'mediatype': 'tvshow', 'title': title})
-                listing.append((plugin.url_for(get_listSez, show_url = article.h3.a['href']), list_item, True))
+                print('serialy-a-relacie get')                
+                listing.append((plugin.url_for(get_listSez, show_url = result['content']['webUrl']), list_item, True))
         else:
             xbmcgui.Dialog().notification(_addon.getAddonInfo('name'),_addon.getLocalizedString(30100), xbmcgui.NOTIFICATION_ERROR, 5000) #'Nenájdené'
 
